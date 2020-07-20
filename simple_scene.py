@@ -13,7 +13,7 @@ if __name__ == "__main__":
     # API from pybullet documentation. see usages in https://github.com/justagist/bullet_panda
 
 
-    # set objects as required in scene
+    ## set objects as required in scene
     # instantiate table object, fix base, scale it as required, set its base position and orientation
     table = pb.loadURDF(os.path.dirname(os.path.abspath(
         __file__)) + "/models/table.urdf", useFixedBase=True, globalScaling=0.5)
@@ -27,15 +27,13 @@ if __name__ == "__main__":
 
     pb.setGravity(0.0, 0.0, -9.8) # set gravity (x,y,z), if gravity is disabled, cylinder will float
 
-    # vm = pb.computeViewMatrix([0.6,0.,0.8], [0.6,0.,0.3], [1,0,0])
-
-    # the next two lines run the simulation continuously in separate thread. If you want to 
+    ## the next two lines run the simulation continuously in separate thread. If you want to 
     # step the simulation yourself comment out the next two lines and call pb.stepSimulation() 
     # when you need
     pb.setRealTimeSimulation(1)
     pb.setTimeStep(0.01)
 
-    # set up camera
+    ## set up camera
     viewMatrix = pb.computeViewMatrix(
         cameraEyePosition=[0, 0, 3],
         cameraTargetPosition=[0, 0, 0],
@@ -48,18 +46,16 @@ if __name__ == "__main__":
         farVal=3.1)
 
 
-    # run simulation continuously
+    ## run simulation continuously
     while True:
         # pb.stepSimulation()
 
-        # get image from camera
+        ## get image from camera
         width, height, rgbImg, depthImg, segImg = pb.getCameraImage(
             width=224,
             height=224,
             viewMatrix=viewMatrix,
             projectionMatrix=projectionMatrix)
 
-        # image = pb.getCameraImage(240,240,viewMatrix=vm)
-        # print (image)
         continue
     
